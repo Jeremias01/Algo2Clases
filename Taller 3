@@ -1,0 +1,105 @@
+package aed;
+
+import java.util.*;
+
+public class ListaEnlazada<T> implements Secuencia<T> {
+    private Nodo nodo;
+
+    private class Nodo {
+        private T valor;
+        private Nodo sigNodo;
+        private Nodo antNodo;
+
+        public Nodo(T valor){
+            this.valor=valor;
+        }
+
+        public void cambiarValor(T valor){
+            this.valor=valor;
+        }
+
+        public void cambiarSigNodo(Nodo antNodo){
+            this.antNodo=antNodo;
+        }
+
+        public void cambiarAntNodo(Nodo nodo){
+            this.sigNodo=sigNodo;
+        }
+        
+        public T obtenerValor(){
+            return valor;
+        }
+
+        public Nodo obtenerAntNodo(){
+            return antNodo;
+        }
+
+        public Nodo obtenerSigNodo(){
+            return sigNodo;
+        }
+    }
+
+    public ListaEnlazada() {
+    }
+
+    public int longitud() {
+        throw new UnsupportedOperationException("No implementada aun");
+    }
+
+    public void agregarAdelante(T elem) {
+        throw new UnsupportedOperationException("No implementada aun");
+    }
+
+    public void agregarAtras(T elem) {
+        ListaEnlazada lista= new ListaEnlazada();
+        lista.nodo.cambiarValor(elem);
+        lista.nodo.cambiarSigNodo(this.nodo);
+    }
+
+    public T obtener(int i) {
+        throw new UnsupportedOperationException("No implementada aun");
+    }
+
+    public void eliminar(int i) {
+        throw new UnsupportedOperationException("No implementada aun");
+    }
+
+    public void modificarPosicion(int indice, T elem) {
+        throw new UnsupportedOperationException("No implementada aun");
+    }
+
+    public ListaEnlazada(ListaEnlazada<T> lista) {
+        throw new UnsupportedOperationException("No implementada aun");
+    }
+    
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException("No implementada aun");
+    }
+
+    private class ListaIterador implements Iterador<T> {
+    	// Completar atributos privados
+
+        public boolean haySiguiente() {
+	        throw new UnsupportedOperationException("No implementada aun");
+        }
+        
+        public boolean hayAnterior() {
+	        throw new UnsupportedOperationException("No implementada aun");
+        }
+
+        public T siguiente() {
+	        throw new UnsupportedOperationException("No implementada aun");
+        }
+        
+
+        public T anterior() {
+	        throw new UnsupportedOperationException("No implementada aun");
+        }
+    }
+
+    public Iterador<T> iterador() {
+	    throw new UnsupportedOperationException("No implementada aun");
+    }
+
+}
