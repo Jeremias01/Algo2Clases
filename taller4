@@ -1,0 +1,142 @@
+package aed;
+
+import java.util.*;
+
+// Todos los tipos de datos "Comparables" tienen el método compareTo()                      
+// elem1.compareTo(elem2) devuelve un entero. Si es mayor a 0, entonces elem1 > elem2
+public class ABB<T extends Comparable<T>> implements Conjunto<T> {
+    private Nodo nodo;
+
+    private class Nodo {
+        private T valor;
+        private Nodo padre;
+        private Nodo nodoDer;
+        private Nodo nodoIzq;
+
+        public Nodo(T valor){
+            this.valor=valor;
+            this.nodoIzq=null;
+            this.nodoDer=null;
+        }
+
+        public void cambiarValor(T valor){
+            this.valor=valor;
+        }
+
+        public void cambiarnodoIzq(Nodo nodoIzq){
+            this.nodoIzq=nodoIzq;
+        }
+
+        public void cambiarnodoDer(Nodo nodoDer){
+            this.nodoDer=nodoDer;
+        }
+        
+        public T obtenerValor(){
+            return valor;
+        }
+
+        public Nodo obtenernodoIzq(){
+            return nodoIzq;
+        }
+
+        public Nodo obtenernodoDer(){
+            return nodoDer;
+        }
+    }
+
+    public ABB() {
+        this.nodo=null;
+    }
+
+    public int cardinal() {
+        return recursivaCardinal(nodo);
+    }
+
+    private int recursivaCardinal(Nodo nodoActual) {
+        int res=0;
+        if (nodoActual.obtenernodoIzq()!=null && nodoActual.obtenernodoDer()!=null) {
+            res =1+recursivaCardinal(nodoActual.obtenernodoIzq())+recursivaCardinal(nodoActual.obtenernodoDer());
+        } else if (nodoActual.obtenernodoIzq()!=null){
+            res=1+recursivaCardinal(nodoActual.obtenernodoIzq());
+        } else if (nodoActual.obtenernodoDer()!=null){
+            res=1+recursivaCardinal(nodoActual.obtenernodoDer());
+        } else {
+            res=1;
+        }
+        return res;
+    }
+
+    public T minimo(){
+        return recursivaMinimo(nodo);
+    }
+
+    private T recursivaMinimo(Nodo nodoActual) {
+        T res=nodoActual.obtenerValor();
+        if (nodoActual.obtenernodoIzq()!=null){
+            res= recursivaMinimo(nodoActual.obtenernodoIzq());
+        } else {
+            res=nodoActual.obtenerValor();
+        }
+        return res;
+    }
+
+    public T maximo(){
+        return recursivaMaximo(nodo);
+    }
+
+    private T recursivaMaximo(Nodo nodoActual) {
+        T res=nodoActual.obtenerValor();
+        if (nodoActual.obtenernodoDer()!=null){
+            res= recursivaMaximo(nodoActual.obtenernodoDer());
+        } else {
+            res=nodoActual.obtenerValor();
+        }
+        return res;
+    }
+
+    public void insertar(T elem){
+
+    }
+
+    public boolean pertenece(T elem){
+        return recursivaPertenece(nodo, elem);
+    }
+
+    private T recursivaPertenece(Nodo nodoActual, T elem) {
+        T res=elem;
+        if (nodoActual.obtenernodoIzq().obtenerValor().compareTo(res)<0){
+            res= recursivaPertenece(nodoActual.obtenernodoIzq());
+        } else if (nodoActual.obtenernodoDer().obtenerValor().compareTo(res)<0){
+            res= recursivaPertenece(nodoActual.obtenernodoIzq());
+        } else {
+
+        }
+            res=nodoActual.obtenerValor();
+        return res;
+    }
+
+    public void eliminar(T elem){
+        throw new UnsupportedOperationException("No implementada aun");
+    }
+
+    public String toString(){
+        throw new UnsupportedOperationException("No implementada aun");
+    }
+
+    private class ABB_Iterador implements Iterador<T> {
+        private Nodo _actual;
+
+        public boolean haySiguiente() {            
+            throw new UnsupportedOperationException("No implementada aun");
+        }
+    
+        public T siguiente() {
+            throw new UnsupportedOperationException("No implementada aun");
+        }
+    }
+
+    public Iterador<T> iterador() {
+        return new ABB_Iterador();
+    }
+
+}
